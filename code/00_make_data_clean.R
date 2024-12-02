@@ -1,10 +1,13 @@
 #load dataset and necessary packages 
-install.packages("dplyr")
-library("dplyr")
+library(dplyr)
+library(tidyverse)
+library(here)
 
-#download data from git repository 
-dia_url <- getURL("")
-dia = read.csv(dia_url)
+#download data from project directory
+here::i_am("code/00_make_data_clean.R")
+absolute_path_to_data <- here::here("dataset", "diabetes_012_health_indicators_BRFSS2015.csv")
+dia <- read.csv(absolute_path_to_data, header = TRUE)
+
 
 #summary statistics 
 str(dia)
@@ -26,5 +29,5 @@ dia_clean = dia_clean |>
   distinct()
 
 #save data into RDS file
-saveRDS(dia_clean, here::here("dataset", "dia_clean.RDS"))
+saveRDS(dia_clean, file = here::here("dataset/dia_clean.RDS"))
 

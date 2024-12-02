@@ -1,4 +1,14 @@
-#Diabetes and blood pressure
+#relative file path
+here::i_am("code/02_make_output2.R")
+
+#load data
+dia_clean <- readRDS(
+  file = here::here("dataset/dia_clean.RDS")
+)
+
+library(ggplot2)
+
+#bar graph to show diabetes and blood pressure
 dia_clean |> 
   ggplot(aes(x = ifelse(isDiabetic == 1, "Diabetic", "Non Diabetic" ), 
              fill = ifelse(HighBP == 1, "High", "Normal"))) +
@@ -7,3 +17,11 @@ dia_clean |>
              aes(label = paste("n = ", ..count..)),
              position=position_stack(vjust=0.5)) +
   labs(title = "High BP vs Diabetes", x= "", y= "", fill="Blood Pressure")
+
+#save plot to output folder
+ggsave(
+  here::here("output/stackbargraph.png"),
+  device = "png"
+)
+
+saveRDS(dist_dia, file = here::here("output/bargraph.rds"))

@@ -1,34 +1,32 @@
-#! TO DO:
-#! add a rule to build the report
-report.html: output1/random_numbers1.rds \ 
-	output2/random_numbers2.rds \
-	output3/random_numbers3.rds \
-	report.Rmd code/04_render_report.R
-	Rscript code/04_render_report.R
-#! TO DO:
-#! add a rule to create the output of 
-#! code/01_make_output1.R
-output1/random_numbers1.rds: code/01_make_output1.R
-	Rscript code/01_make_output1.R
+#! rules to build the report
+Report.html: output/bargraph.png \ 
+	output/stackbargraph.png \
+	output/scatterplot.png \
+	output/multinomial.rds \
+	Report.Rmd code/05_render_report.R
+	Rscript code/05_render_report.R
 	
-#! TO DO:
-#! add a rule to create the output of 
+#! rule to load in the data
+dataset/dia_clean.rds: Rscript 00_make_data_clean.R
+	
+#! code/01_make_output1.R
+output/bargraph.png: dataset/dia_clean.rds 
+	Rscript code/01_make_output1.R
+
 #! code/02_make_output2.R
-output2/random_numbers2.rds: code/02_make_output2.R output1/01_make_output1.R
+output/stackbargraph.png: dataset/dia_clean.rds 
 	Rscript code/02_make_output2.R
 
-#! TO DO:
-#! add a rule to create the output of 
 #! code/03_make_output3.R
-output3/random_numbers3.rds: code/03_make_output3.R output1/01_make_output1.R \ 
-	output2/02_make_output2.R
+output/scatterplot.png: dataset/dia_clean.rds 
 	Rscript code/03_make_output3.R
-#! TO DO:
-#! add a PHONY target for removing .rds files
-#! from the output1/2/3 directories
-# -f: force removal 
+
+#! Rule to create model
+output/multinomial.rds: dataset/dia_clean.rds
+	Rscript code/04_make_model.R
+
 PHONY: clean
 clean:
-	rm -f output/*.rds output2/*.rds output3/*.rds && \
-	rm -f report.html
+	rm -f dataset/dia_clean.rds output/*.rds && \
+	rm -f Report.html
 	

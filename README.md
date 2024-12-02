@@ -9,23 +9,24 @@ based on various health indicators.
 * Analysis of the risk of diabetes based on the collected data
 * Generates a report that indicates the likelihood of diabetes and recommendations for prevention
 
-## Repository Structure
+## Repository Directory
 This repository includes the following folders and files:
-- `data/`: Contains the dataset (`diabetes_012_health_indicators_BRFSS2015.csv`).
+- `data/`: Contains the original dataset (`diabetes_012_health_indicators_BRFSS2015.csv`) and clean RDS file.
 - `output/`: Stores the generated analysis files, such as `.rds` files for tables and `.png` files for figures.
-- `scripts/`: Contains R scripts for generating tables and figures.
-- `final_project.Rmd`: The main R Markdown file for generating the project report.
-- `Makefile`: Automates the process of generating the final report and associated outputs.
-- `README.md`: Documentation for the project, including instructions for running the analysis.
+- `code/`: Contains R scripts for generating figures and model.
+- `Report.Rmd`: The R Markdown file for generating the project report.
+- `Makefile`: Automates the process of generating the final report.
+- `README.md`: Documentation for the final project.
 
-## How to Run the Project
+## Run the Project
 1. Clone the repository:
   In the bash:
-     git clone https://github.com/kairis96/
+     git clone https://github.com/kairis96/DATA550-FinalProject
      
 2. Navigate to the project directory:
   In the bash:
-     cd final_report
+     cd DATA550-FinalProject
+     
 3. Generate the Final Report:
   In the bash:
-     make final_report.html
+     make Report.html

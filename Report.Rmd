@@ -7,39 +7,155 @@ output:
 ---
 ```{r, here-i-am, include = FALSE}
 here::i_am("Report.Rmd")
+dia_clean <- readRDS(
+  file = here::here("dataset/dia_clean.RDS")
+)
 ```
 
-```{r, codes, include = FALSE}
-#! TO DO: 
-#!   read 01_code from output1 directory
-
-
-#! TO DO: 
-#!   read 02_code from output2 directory
-
-
-#! TO DO: 
-#!   read 03_code from output3 directory
-
+```{r, libraries, include= FALSE}
+library(dplyr)
+library(tidyverse)
+library(here)
+library(ggplot2)
+library(nnet)
+library(caret)
 ```
+
+# Descriptive Analysis
+
+The Behavioral Risk Factor Surveillance System (BRFSS) is a health-related telephone survey that is collected annually by the CDC. Each year, the survey collects responses from over 400,000 Americans on health-related risk behaviors, chronic health conditions, and the use of preventative services. It has been conducted every year since 1984. For this project, a csv of the dataset available on Kaggle for the year 2015 was used. This original dataset contains responses from 441,455 individuals and has 330 features. These features are either questions directly asked of participants, or calculated variables based on individual participant responses.
+
+### Dataset Overview
+
+Number of observations: 253,680
+Number of features: 22
+
+The target variable in this dataset is Diabetes_012, which categorizes individuals into three distinct groups:
+
+0: No diabetes or only during pregnancy
+1: Prediabetes
+2: Diabetes
+
+However, upon exploraory data analysis, I decided to merge class 0 and 1 into class 0. Hence, 
+
+0: No diabetes or only during pregnancy and Prediabetes
+1: Diabetes
+
+### Dataset Features
+
+The features in this dataset represent various health conditions, lifestyle choices, and demographic information. Below is a brief explanation of each feature:
+
+HighBP: Binary indicator of whether the individual has been diagnosed with high blood pressure (1: Yes, 0: No).
+
+HighChol: Binary indicator of whether the individual has been diagnosed with high cholesterol (1: Yes, 0: No).
+
+CholCheck: Binary indicator of whether the individual has had a cholesterol check within the past five years (1: Yes, 0: No).
+
+BMI: Body Mass Index, a continuous variable representing an individual’s weight in relation to their height.
+
+Smoker: Binary indicator of whether the individual has smoked at least 100 cigarettes in their lifetime (1: Yes, 0: No).
+
+Stroke: Binary indicator of whether the individual has been diagnosed with a stroke (1: Yes, 0: No).
+
+HeartDisease: Binary indicator of whether the individual has been diagnosed with coronary heart disease or a myocardial infarction (1: Yes, 0: No).
+
+PhysActivity: Binary indicator of whether the individual has engaged in any physical activity or exercise other than their regular job in the past 30 days (1: Yes, 0: No).
+
+Fruits: Binary indicator of whether the individual consumes fruit at least once per day (1: Yes, 0: No).
+
+Veg: Binary indicator of whether the individual consumes vegetables at least once per day (1: Yes, 0: No).
+
+Alcohol: Binary indicator of heavy alcohol consumption (1: Yes, 0: No). Defined as more than 14 drinks per week for men and more than 7 drinks per week for women.
+
+HealthCoverage: Binary indicator of whether the individual has any kind of health care coverage, including health insurance, prepaid plans, or government plans (1: Yes, 0: No).
+
+CostDoc: Binary indicator of whether the individual could not see a doctor in the past 12 months due to cost (1: Yes, 0: No).
+
+GenHealth: Self-reported general health status, ranging from 1 (Excellent) to 5 (Poor).
+
+MentalHealth: Number of days in the past 30 days where the individual’s mental health was not good.
+
+PhysicalHealth: Number of days in the past 30 days where the individual’s physical health was not good.
+
+DiffWalk: Binary indicator of whether the individual has serious difficulty walking or climbing stairs (1: Yes, 0: No).
+
+Sex: Binary indicator of the individual’s sex (1: Male, 0: Female).
+
+Age: Age categorized into 14 levels ranging from 18-24 (Level 1) to 80+ (Level 14).
+
+Education: Highest level of education completed, ranging from 1 (Never attended school) to 6 (College graduate).
+
+Income: Household income from all sources, categorized into 8 levels (1: Less than $10,000 to 8: $75,000 or more).
+
+This dataset provides a comprehensive snapshot of individuals’ health and lifestyle, which can be used to predict diabetes risk. Each feature is either binary, categorical, or continuous, representing different aspects of an individual’s health profile.
+
+By understanding these features, we can begin to explore how they correlate with diabetes status and identify key predictors that can help improve early diagnosis and intervention.
+
+## Graphical Analysis
 
 # Histogram 1
 
-```{r, random-numbers1-histogram}
-#| fig.cap = "First set of distributions"
-
+```{r, plot-data1}
+#| fig.align = "center",
+#| out.width = "600px"
+knitr::include_graphics(
+  here::here("output/bargraph.png")
+)
 ```
+The bar plot visualization illustrates the distribution of the diabetes classes within the dataset. 
+The majority of respondents, approximately 200,000 participants, fall into the No Diabetes category (class 0), which reflects the prevalence of non-diabetic individuals. 
+Meanwhile, 40,000 of respondents are categorized as having diabetes (class 1).
 
 # Histogram 2
 
-```{r, random-numbers2-histogram}
-#| fig.cap = "Second set of distributions"
+```{r, plot-data2}
+##| fig.align = "center",
+#| out.width = "600px"
+knitr::include_graphics(
+  here::here("output/stackbargraph.png")
+)
+```
+The stacked bar plot named "High BP vs Diabetes" illustrates the relationship between diabetes and blood pressure (BP) across two diabetes classes (indicated by colors). 
+Majority of non-diabetic respondents have normal BP, while among diabetic respondents more than half of the respondents reported that they have high BP.
 
+# Scatterplot
+
+```{r, plot-data3}
+##| fig.align = "center",
+#| out.width = "600px"
+knitr::include_graphics(
+  here::here("output/scatterplot.png")
+)
 ```
 
-# Histogram 3
+The scatter plot named “Age vs BMI by Diabetes Status” shows the relationship between an individual’s age (X-axis) and their Body Mass Index (BMI) (Y-axis) across two diabetes classes (indicated by colors).
 
-```{r, random-numbers3-histogram}
-#| fig.cap = "Third set of distributions"
+The majority of the individuals, represented by the light blue points, belong to the Class 0 and 1 (No Diabetes and Prediabetes) category. These points are densely packed across the BMI range but are more concentrated at the lower end of the age spectrum (ages 5 to 10).
 
+Individuals in the Class 1 (Diabetes) category, represented by light coral points, tend to cluster at higher BMIs, with some dispersion across the age groups. There is a subtle pattern suggesting that those with diabetes tend to have higher BMI values, though the data also shows significant overlap with Class 0 (No diabetes to prediabetes).
+
+# Regression Analysis
+
+## Multinomial Logistic Regression
+```{r, regression}
+set.seed(123)
+trainIndex <- createDataPartition(dia_clean$isDiabetic, p = .8, 
+                                  list = FALSE, 
+                                  times = 1)
+diaTrain <- dia_clean[ trainIndex,]
+diaTest  <- dia_clean[-trainIndex,]
+
+multinomial_regression <- readRDS(
+  file = here::here("output/multinomial.rds")
+)
+
+summary(multinomial_regression)
 ```
+
+We fit a multinomial logistic regression model using the training data. This model estimates the probability of an individual being in each of the two diabetes classes based on the health indicators via BRFSS.
+
+The coefficients from the model represent the estimated change in the log-odds of being in a particular class (Class 1) compared to Class 0 (the reference class) for each unit change in the predictor variable.
+
+For example, the coefficient for HighBP (high blood pressure) in Class 1 (Diabetes) is 0.6629, indicating that having high blood pressure increases the log-odds of being diabetic (Class 1) compared to being non-diabetic (Class 0). Similarly, the BMI coefficient in Class 1 is 0.0571, meaning higher BMI is associated with a higher risk of diabetes.
+
+The model successfully converged after 60 iterations, achieving a final residual deviance of 136029.5 and an AIC (Akaike Information Criterion) of 136121.5. The lower the AIC, the better the model fits the data.
