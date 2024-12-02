@@ -25,8 +25,12 @@ output/scatterplot.png: dataset/dia_clean.rds
 output/multinomial.rds: dataset/dia_clean.rds
 	Rscript code/04_make_model.R
 
-PHONY: clean
+.PHONY: clean
 clean:
 	rm -f dataset/dia_clean.rds output/*.rds && \
 	rm -f Report.html
+	
+.PHONY: install
+install:
+Rscript -e "renv::restore(prompt = FALSE)"
 	
