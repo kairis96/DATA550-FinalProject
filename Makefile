@@ -1,14 +1,15 @@
 #! rules to build the report
-Report.html: output/bargraph.png \ 
+Report.html: output/bargraph.png \
 	output/stackbargraph.png \
 	output/scatterplot.png \
 	output/multinomial.rds \
 	Report.Rmd code/05_render_report.R
 	Rscript code/05_render_report.R
-	
+
 #! rule to load in the data
-dataset/dia_clean.rds: Rscript 00_make_data_clean.R
-	
+dataset/dia_clean.rds: code/00_make_data_clean.R
+	Rscript code/00_make_data_clean.R
+
 #! code/01_make_output1.R
 output/bargraph.png: dataset/dia_clean.rds 
 	Rscript code/01_make_output1.R
@@ -29,8 +30,7 @@ output/multinomial.rds: dataset/dia_clean.rds
 clean:
 	rm -f dataset/dia_clean.rds output/*.rds && \
 	rm -f Report.html
-	
+
 .PHONY: install
 install:
-Rscript -e "renv::restore(prompt = FALSE)"
-	
+	Rscript -e "renv::restore(prompt = FALSE)"

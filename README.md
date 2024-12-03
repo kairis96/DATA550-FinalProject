@@ -23,10 +23,6 @@ This repository includes the following folders and files:
   In the bash:
      git clone https://github.com/kairis96/DATA550-FinalProject
      
-2. Navigate to the project directory:
-  In the bash:
-     cd DATA550-FinalProject
-     
-3. Generate the Final Report:
+2. Generate the Final Report:
   In the bash:
      make Report.html
