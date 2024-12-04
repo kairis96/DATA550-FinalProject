@@ -60,6 +60,7 @@ Ensure all required packages are installed by restoring the renv environment:
 ### Generate the Final Report
 Use the Makefile to create the final report:
   `make Report.html`
+Use `open Report.html` for MacOS or `start Report.html` for Windows to open the report.
 
 ### Output Files
 The generated report (Report.html) and outputs (e.g., .png figures and .rds files) will be available in the respective directories.
