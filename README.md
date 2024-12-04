@@ -29,8 +29,11 @@ The repository is organized as follows:
 - Generating analysis outputs (01_make_output1.R, 02_make_output2.R, 03_make_output3.R)
 - Building the multinomial model (04_make_model.R)
 - Rendering the final report (05_render_report.R).
+
 `Report.Rmd`: The R Markdown file used to generate the project report.
+
 `Makefile`: Automates the process of generating the outputs and the final report.
+
 `README.md`: Documentation for the project, including setup instructions.
 
 ## Synchronizing the Package Repository
