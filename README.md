@@ -20,45 +20,44 @@ Cleaned Dataset: Saved as an RDS file (data/dia_clean.rds) after preprocessing.
 
 The repository is organized as follows:
 
-`data`/: Contains the original dataset and the cleaned dataset used for analysis.
-`output`/: Stores generated analysis outputs:
+*`dataset`/: Contains the original dataset and the cleaned dataset used for analysis.
+*`output`/: Stores generated analysis outputs:
 - Figures: .png files (e.g., bar graphs, scatterplots).
 - Model objects: .rds files.
-`code`/: Includes R scripts for:
+*`code`/: Includes R scripts for:
 - Data cleaning (00_make_data_clean.R)
 - Generating analysis outputs (01_make_output1.R, 02_make_output2.R, 03_make_output3.R)
 - Building the multinomial model (04_make_model.R)
 - Rendering the final report (05_render_report.R).
 
-`Report.Rmd`: The R Markdown file used to generate the project report.
+*`Report.Rmd`: The R Markdown file used to generate the project report.
 
-`Makefile`: Automates the process of generating the outputs and the final report.
+*`Makefile`: Automates the process of generating the outputs and the final report.
 
-`README.md`: Documentation for the project, including setup instructions.
+*`README.md`: Documentation for the project, including setup instructions.
 
 ## Synchronizing the Package Repository
 
 To ensure consistency across environments, the project uses renv for package management. The package environment can be restored using the command included in the Makefile:
 
-.PHONY: install
+`.PHONY: install
 install:
-	Rscript -e "renv::restore(prompt = FALSE)"
-
+	Rscript -e "renv::restore(prompt = FALSE)"`
 # How to Run the Project
 
 ## Clone the Repository
 
 ### Open a terminal and run:
-  git clone https://github.com/kairis96/DATA550-FinalProject
-  cd DATA550-FinalProject
+*`git clone https://github.com/kairis96/DATA550-FinalProject`
+*`cd DATA550-FinalProject`
 
 ### Install Required Packages
 Ensure all required packages are installed by restoring the renv environment:
-  make install
+  `make install`
   
 ### Generate the Final Report
 Use the Makefile to create the final report:
-  make Report.html
+  `make Report.html`
 
 ### Output Files
 The generated report (Report.html) and outputs (e.g., .png figures and .rds files) will be available in the respective directories.
