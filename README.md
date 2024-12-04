@@ -21,9 +21,11 @@ Cleaned Dataset: Saved as an RDS file (data/dia_clean.rds) after preprocessing.
 The repository is organized as follows:
 
 *`dataset`/: Contains the original dataset and the cleaned dataset used for analysis.
+
 *`output`/: Stores generated analysis outputs:
 - Figures: .png files (e.g., bar graphs, scatterplots).
 - Model objects: .rds files.
+
 *`code`/: Includes R scripts for:
 - Data cleaning (00_make_data_clean.R)
 - Generating analysis outputs (01_make_output1.R, 02_make_output2.R, 03_make_output3.R)
