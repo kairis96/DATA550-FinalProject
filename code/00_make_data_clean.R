@@ -2,6 +2,10 @@
 library(dplyr)
 library(tidyverse)
 library(here)
+library(ggplot2)
+library(nnet)
+library(caret)
+library(renv)
 
 #download data from project directory
 here::i_am("code/00_make_data_clean.R")

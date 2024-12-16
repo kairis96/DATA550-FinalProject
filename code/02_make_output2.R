@@ -1,12 +1,13 @@
 #relative file path
 here::i_am("code/02_make_output2.R")
 
+library(ggplot2)
+
 #load data
 dia_clean <- readRDS(
   file = here::here("dataset/dia_clean.RDS")
 )
 
-library(ggplot2)
 
 #bar graph to show diabetes and blood pressure
 dia_clean |> 
@@ -23,5 +24,3 @@ ggsave(
   here::here("output/stackbargraph.png"),
   device = "png"
 )
-
-saveRDS(dist_dia, file = here::here("output/bargraph.rds"))

@@ -1,12 +1,12 @@
 #relative file path
 here::i_am("code/01_make_output1.R")
 
+library(ggplot2)
+
 #load data
 dia_clean <- readRDS(
   file = here::here("dataset/dia_clean.RDS")
 )
-
-library(ggplot2)
 
 #scatterplot to show the relationship between age and BMI
 scatterplot <- ggplot(dia_clean, aes(x=Age, y=BMI, color=isDiabetic)) + 

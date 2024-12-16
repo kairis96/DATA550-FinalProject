@@ -50,17 +50,16 @@ install:
 ## Clone the Repository
 
 ### Open a terminal and run:
-*`git clone https://github.com/kairis96/DATA550-FinalProject`
-*`cd DATA550-FinalProject`
+#####`git clone https://github.com/kairis96/DATA550-FinalProject`
+#####`cd DATA550-FinalProject`
 
 ### Install Required Packages
 Ensure all required packages are installed by restoring the renv environment:
   `make install`
   
 ### Generate the Final Report
-Use the Makefile to create the final report:
-  `make Report.html`
-Use `open Report.html` for MacOS or `start Report.html` for Windows to open the report.
+#####Use the Makefile to create the final report:`make Report.html`
+#####Use `open Report.html` for MacOS or `start Report.html` for Windows to open the report.
 
 ### Output Files
 The generated report (Report.html) and outputs (e.g., .png figures and .rds files) will be available in the respective directories.
@@ -75,3 +74,15 @@ Bar graphs, stacked bar graphs, and scatterplots illustrating trends and relatio
 A multinomial logistic regression model (output/multinomial.rds).
 ### Report:
 A comprehensive report (Report.html) detailing the analysis and findings.
+
+# Final Project (Creating a report folder with complied report)
+
+## Prerequisites
+- Ensure Docker is installed and running.
+- The image `kairis96/finalproject5:latest` is hosted on Docker Hub and will be pulled automatically.
+
+## Generating the Report
+To generate the report:
+1. Run:
+   ```bash
+   make final_report

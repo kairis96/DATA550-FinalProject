@@ -1,15 +1,13 @@
 #relative file path
 here::i_am("code/04_make_model.R")
 
+library(nnet)
+library(caret)
+
 #load data
 dia_clean <- readRDS(
   file = here::here("dataset/dia_clean.RDS")
 )
-
-# Load necessary libraries
-library(nnet)
-library(caret)
-library(gtsummary)
 
 # Split the data into training and testing sets
 set.seed(123)
