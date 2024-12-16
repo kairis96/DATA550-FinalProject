@@ -13,8 +13,8 @@ The project uses a dataset featuring health metrics such as BMI, blood pressure,
 ## Data
 The dataset used in this project includes the following:
 
-Original Source: data/diabetes_012_health_indicators_BRFSS2015.csv
-Cleaned Dataset: Saved as an RDS file (data/dia_clean.rds) after preprocessing.
+- Original Source: data/diabetes_012_health_indicators_BRFSS2015.csv
+- Cleaned Dataset: Saved as an RDS file (data/dia_clean.rds) after preprocessing.
 
 ## Repository Structure
 
@@ -50,16 +50,27 @@ install:
 ## Clone the Repository
 
 ### Open a terminal and run:
-#####`git clone https://github.com/kairis96/DATA550-FinalProject`
-#####`cd DATA550-FinalProject`
+  ```bash
+  git clone https://github.com/kairis96/DATA550-FinalProject
+  cd DATA550-FinalProject
 
 ### Install Required Packages
 Ensure all required packages are installed by restoring the renv environment:
-  `make install`
+  ```bash
+  make install
   
 ### Generate the Final Report
-#####Use the Makefile to create the final report:`make Report.html`
-#####Use `open Report.html` for MacOS or `start Report.html` for Windows to open the report.
+- Use the Makefile to create the final report:
+  ```bash
+  make Report.html
+  
+- To open the report, For MacOS:
+  ```bash
+  open Report.html
+
+- For Windows:
+  ```bash
+  start Report.html 
 
 ### Output Files
 The generated report (Report.html) and outputs (e.g., .png figures and .rds files) will be available in the respective directories.
@@ -83,6 +94,6 @@ A comprehensive report (Report.html) detailing the analysis and findings.
 
 ## Generating the Report
 To generate the report:
-1. Run:
+- Run:
    ```bash
    make report
