@@ -41,10 +41,11 @@ The repository is organized as follows:
 ## Synchronizing the Package Repository
 
 To ensure consistency across environments, the project uses renv for package management. The package environment can be restored using the command included in the Makefile:
-
-`.PHONY: install
+```bash
+.PHONY: install
 install:
-	Rscript -e "renv::restore(prompt = FALSE)"`
+	Rscript -e "renv::restore(prompt = FALSE)"
+```bash
 # How to Run the Project
 
 ## Clone the Repository
@@ -53,24 +54,29 @@ install:
   ```bash
   git clone https://github.com/kairis96/DATA550-FinalProject
   cd DATA550-FinalProject
+  ```
 
 ### Install Required Packages
 Ensure all required packages are installed by restoring the renv environment:
   ```bash
   make install
+  ```
   
 ### Generate the Final Report
 - Use the Makefile to create the final report:
   ```bash
   make Report.html
+  ```
   
 - To open the report, For MacOS:
   ```bash
   open Report.html
+  ```
 
 - For Windows:
   ```bash
-  start Report.html 
+  start Report.html
+  ```
 
 ### Output Files
 The generated report (Report.html) and outputs (e.g., .png figures and .rds files) will be available in the respective directories.
@@ -97,3 +103,4 @@ To generate the report:
 - Run:
    ```bash
    make report
+   ```
