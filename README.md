@@ -85,4 +85,4 @@ A comprehensive report (Report.html) detailing the analysis and findings.
 To generate the report:
 1. Run:
    ```bash
-   make final_report
+   make report
