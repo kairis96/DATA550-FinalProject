@@ -45,7 +45,8 @@ To ensure consistency across environments, the project uses renv for package man
 .PHONY: install
 install:
 	Rscript -e "renv::restore(prompt = FALSE)"
-```bash
+```
+
 # How to Run the Project
 
 ## Clone the Repository
